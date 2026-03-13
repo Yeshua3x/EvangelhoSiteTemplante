@@ -3,316 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Livros do Novo Testamento</title>
-    <link rel="manifest" href="manifest.json" />
-    <link rel="icon" type="image/png" href="icon-192x192.png" />
-    <link rel="apple-touch-icon" href="icon-192x192.png" />
-    <meta name="theme-color" content="#0056b3" />
+    <title>Blog dos Livros do Novo Testamento</title>
     <style>
+        * {
+            box-sizing: border-box; /* Define o box model */
+        }
+
         body {
-    font-family: 'Roboto', sans-serif;
-    background-image: url('caminho/para/sua/imagem.jpg'); /* Substitua pelo caminho da sua imagem */
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    color: #fff; /* Texto em branco */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh; /* Ocupa 100% da altura da janela */
-    margin: 0;
-    padding: 20px;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Sombra ao texto */
-}
+            font-family: 'Roboto', sans-serif;
+            background-image: url('caminho/para/sua/imagem.jpg'); /* Substitua pelo caminho da sua imagem */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #fff; 
+            margin: 0;
+            padding: 0;
+        }
 
-h1 {
-    color: #ffcc00; /* Cor vibrante para o título */
-    margin-bottom: 20px;
-    font-size: 2.5em; /* Tamanho maior para o título */
-}
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro */
+        }
 
-.search-bar {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-}
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+        }
 
-input[type="text"] {
-    padding: 15px;
-    font-size: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.7);
-    border-radius: 10px;
-    width: 250px;
-    background-color: rgba(255, 255, 255, 0.2);
-    color: #fff;
-    transition: border-color 0.3s; /* Transição para a borda */
-}
+        h1 {
+            color: #ffcc00; /* Cor vibrante para o título */
+            margin: 0;
+        }
 
-input[type="text"]:focus {
-    border-color: #ffcc00; /* Borda dourada ao focar */
-}
+        nav {
+            position: absolute;
+            top: 60px; /* Abaixo do header */
+            left: 0;
+            right: 0;
+            background-color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-100%); /* Inicialmente escondido */
+            transition: transform 0.3s ease; /* Transição suave */
+        }
 
-button {
-    background-color: #28a745; /* Verde atraente */
-    color: white;
-    border: none;
-    padding: 15px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 10px;
-    transition: background-color 0.3s, transform 0.2s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra no botão */
-}
+        .nav-visible {
+            transform: translateY(0); /* Torna visível */
+        }
 
-button:hover {
-    background-color: #218838; /* Verde escuro no hover */
-    transform: translateY(-2px); /* Efeito de elevação */
-}
+        nav a {
+            text-decoration: none;
+            color: #333;
+            margin: 10px 0;
+            padding: 10px 15px;
+            transition: background-color 0.3s;
+        }
 
-.quiz-container {
-    margin-top: 30px;
-    width: 100%;
-    max-width: 600px;
-    background-color: rgba(255, 255, 255, 0.2); /* Fundo do container */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra no container */
-}
+        nav a:hover {
+            background-color: rgba(0, 123, 255, 0.1); /* Efeito hover */
+        }
 
-.question {
-    margin: 10px 0;
-}
+        main {
+            padding: 20px;
+        }
 
-.result {
-    margin-top: 20px;
-}
+        article {
+            background-color: rgba(255, 255, 255, 0.8); /* Fundo do artigo */
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
 
-a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    background-color: rgba(255, 255, 255, 0.15); /* Fundo mais escuro para os links */
-    color: #fff; /* Texto em branco */
-    padding: 10px 15px;
-    border-radius: 10px; /* Cantos arredondados */
-    transition: background-color 0.3s, transform 0.3s;
-    margin: 5px 0; /* Espaçamento entre os botões */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra nos links */
-}
-
-a img {
-    width: 25px; /* Aumenta a visibilidade */
-    height: 25px; /* Aumenta a visibilidade */
-    margin-right: 10px; /* Espaço entre a imagem e texto */
-}
-
-a:hover {
-    background-color: rgba(0, 123, 255, 0.6); /* Azul no hover */
-    transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
-    color: #fff; /* Mantém o texto branco */
-}
-        
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: rgba(0, 0, 0, 0.8); /* Background escuro */
-    color: white;
-}
-
-.menu-icon {
-    font-size: 24px; /* Tamanho do ícone */
-    cursor: pointer;
-}
-
-nav {
-    position: absolute;
-    top: 60px; /* Abaixo do header */
-    left: 0;
-    right: 0;
-    background-color: rgba(255, 255, 255, 0.9); /* Fundo claro para o menu */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Itens alinhados à esquerda */
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transform: translateY(-100%); /* Inicialmente escondido */
-    transition: transform 0.3s ease; /* Transição suave */
-}
-
-.nav-visible {
-    transform: translateY(0); /* Torna visível */
-}
-
-nav a {
-    text-decoration: none;
-    color: #333; /* Cor do texto */
-    margin: 10px 0; /* Espaçamento entre os links */
-    padding: 10px 15px; /* Espaçamento interno */
-}
-
-nav a:hover {
-    background-color: rgba(0, 123, 255, 0.1); /* Efeito hover */
-}
-        
-            
+        h2 {
+            margin-top: 0; /* Remove o espaço superior do título */
+        }
     </style>
-    <script>
-        let estudos = [];
-        let livros = [];
-        let quiz = [];
-        let score = 0;
-        let currentQuestionIndex = 0;
-
-        // Função para carregar os JSONs
-        async function loadBooks() {
-            const response = await fetch('livros.json');
-            livros = await response.json();
-        }
-
-        async function loadQuiz() {
-            const response = await fetch('quiz.json');
-            quiz = await response.json();
-            displayQuestion();
-        }
-
-        function displayQuestion() {
-            const questionContainer = document.getElementById("questionContainer");
-            const currentQuestion = quiz[currentQuestionIndex];
-            questionContainer.innerHTML = `
-                <div class="question">${currentQuestion.pergunta}</div>
-                ${currentQuestion.opcoes.map((opcao, index) => `
-                    <button onclick="checkAnswer('${opcao}')">${opcao}</button>
-                `).join('')}
-            `;
-        }
-
-        function checkAnswer(selectedOption) {
-            const currentQuestion = quiz[currentQuestionIndex];
-            if (selectedOption === currentQuestion.resposta_correta) {
-                score++;
-            }
-            currentQuestionIndex++;
-            if (currentQuestionIndex < quiz.length) {
-                displayQuestion();
-            } else {
-                showResult();
-            }
-        }
-
-        function showResult() {
-            const questionContainer = document.getElementById("questionContainer");
-            questionContainer.innerHTML = `
-                <div class="result">Você acertou ${score} de ${quiz.length} perguntas!</div>
-                <button onclick="resetQuiz()">Reiniciar Quiz</button>
-            `;
-        }
-
-        function resetQuiz() {
-            score = 0;
-            currentQuestionIndex = 0;
-            displayQuestion();
-        }
-
-        function searchBook() {
-            const input = document.getElementById("bookSearch").value.toLowerCase().trim();
-            const foundBook = livros.find(book => book.titulo.toLowerCase() === input);
-            if (foundBook) {
-                window.location.href = foundBook.url;
-            } else {
-                alert('Livro não encontrado. Tente novamente.');
-            }
-        }
-
-        // Chama as funções de carregar ao carregar a página
-        window.onload = async () => {
-            await loadBooks();
-            await loadQuiz();
-        };
-//adaptado
-
-                
-        document.addEventListener("DOMContentLoaded", function () {
-    fetch('estudos.json')
-        .then(response => response.json())
-        .then(data => {
-            exibirListaEstudos(data);
-        })
-        .catch(error => console.error('Erro ao carregar o JSON:', error));
-});
-
-function exibirListaEstudos(data) {
-    const estudosDiv = document.getElementById('estudos');
-    estudosDiv.innerHTML = ''; // Limpa a área de estudos
-
-    data.forEach(estudo => {
-        const link = document.createElement('a');
-        link.href = `#estudo-${estudo.id}`;
-        link.innerText = estudo.titulo;
-        link.onclick = () => mostrarEstudo(estudo);
-        
-        estudosDiv.appendChild(link);
-        estudosDiv.appendChild(document.createElement('br'));
-    });
-}
-
-// Carrega os dados do JSON
-        if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('service-worker.js')
-        .then(reg => console.log('✅ Service Worker registrado', reg))
-        .catch(err => console.error('❌ Erro ao registrar o SW:', err));
-    });
-            }
-// Variáveis globais   
-        document.getElementById('menu-icon').addEventListener('click', function() {
-    const navMenu = document.getElementById('nav-menu');
-    navMenu.classList.toggle('nav-visible'); // Alterna a classe para mostrar/ocultar
-});
-        
-    </script>
 </head>
 <body>
-
-    <h1>Livros do Novo Testamento</h1>
-
-    <div class="search-bar">
-        <input type="text" id="bookSearch" placeholder="Digite o nome de um livro...">
-        <button onclick="searchBook()">Buscar</button>
-    </div>
-
-    <div class="quiz-container" id="questionContainer"></div>
-
-
-
-    <h1>Estudos Bíblicos</h1>
-
-<a href="about.html">
-    <img src="https://i.imgur.com/C31BvHH.png" alt="Apóstolo Paulo" style="width: 20px; height: 20px; margin-right: 5px;">
-    Sobre o Apóstolo Paulo
-</a>
-<a href="about2.html">
-    <img src="img/jesus.jpg" alt="Jesus" style="width: 20px; height: 20px; margin-right: 5px;">
-    Sobre a vida de Jesus
-</a>
-<a href="about3.html">
-    <img src="https://i.imgur.com/C31BvHH.png" alt="Apóstolo Paulo" style="width: 20px; height: 20px; margin-right: 5px;">
-    Sobre o Ministério de Jesus Cristo 
-</a>
-<a href="about4.html">
-    <img src="img/jesus.jpg" alt="Jesus" style="width: 20px; height: 20px; margin-right: 5px;">
-    Sobre a ressurreição de Lázaro 
-</a>
-
-<a href="vendas.html">
-    <img src="img/jesus.jpg" alt="Jesus" style="width: 20px; height: 20px; margin-right: 5px;">
-    Conheca nossos livros e produtos 
-</a>
-
+    <header>
+        <div class="menu-icon" id="menu-icon">
+            ☰
+        </div>
+        <h1>Blog dos Livros do Novo Testamento</h1>
+    </header>
     
+    <nav id="nav-menu" class="nav-hidden">
+        <a href="about.html">Sobre o Apóstolo Paulo</a>
+        <a href="about2.html">Sobre a vida de Jesus</a>
+        <a href="about3.html">Sobre o Ministério de Jesus Cristo</a>
+        <a href="about4.html">Sobre a ressurreição de Lázaro</a>
+        <a href="vendas.html">Conheça nossos livros e produtos</a>
+    </nav>
 
-    
+    <main class="content">
+        <article>
+            <h2>Bem-vindo ao Blog</h2>
+            <p>Aqui você encontrará informações sobre os livros do Novo Testamento e a vida de Jesus Cristo.</p>
+            <p>Fique à vontade para explorar nossos conteúdos e aprender mais sobre a fé cristã.</p>
+            <p>Este espaço é dedicado a todos que desejam aprofundar-se no ensinamento do Novo Testamento.</p>
+            <!-- Adicione mais conteúdo aqui -->
+        </article>
+    </main>
+
+    <script>
+        document.getElementById('menu-icon').addEventListener('click', function() {
+            const navMenu = document.getElementById('nav-menu');
+            navMenu.classList.toggle('nav-visible'); // Alterna a classe para mostrar/ocultar
+        });
+    </script>
 </body>
 </html>
