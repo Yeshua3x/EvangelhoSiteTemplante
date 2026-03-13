@@ -266,7 +266,12 @@ function exibirListaEstudos(data) {
         .catch(err => console.error('❌ Erro ao registrar o SW:', err));
     });
             }
-// Variáveis globais      
+// Variáveis globais   
+        document.getElementById('menu-icon').addEventListener('click', function() {
+    const navMenu = document.getElementById('nav-menu');
+    navMenu.classList.toggle('nav-visible'); // Alterna a classe para mostrar/ocultar
+});
+        
     </script>
 </head>
 <body>
