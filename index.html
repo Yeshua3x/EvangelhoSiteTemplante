@@ -112,7 +112,51 @@ a:hover {
     transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
     color: #fff; /* Mantém o texto branco */
 }
+        
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.8); /* Background escuro */
+    color: white;
+}
 
+.menu-icon {
+    font-size: 24px; /* Tamanho do ícone */
+    cursor: pointer;
+}
+
+nav {
+    position: absolute;
+    top: 60px; /* Abaixo do header */
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo claro para o menu */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Itens alinhados à esquerda */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-100%); /* Inicialmente escondido */
+    transition: transform 0.3s ease; /* Transição suave */
+}
+
+.nav-visible {
+    transform: translateY(0); /* Torna visível */
+}
+
+nav a {
+    text-decoration: none;
+    color: #333; /* Cor do texto */
+    margin: 10px 0; /* Espaçamento entre os links */
+    padding: 10px 15px; /* Espaçamento interno */
+}
+
+nav a:hover {
+    background-color: rgba(0, 123, 255, 0.1); /* Efeito hover */
+}
+        
             
     </style>
     <script>
